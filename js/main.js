@@ -36,3 +36,33 @@ video.addEventListener('canplay', function(e) {
         streaming = true;
     }
 }, false); // false for synchronous operation
+
+photoButton.addEventListener('click', function(e) {
+    takePicture();
+    e.preventDefault();
+}, false);
+
+function takePicture() {
+    // Create canvas
+    const context = canvas.getContext('2d');
+    if(width && height) {
+        // Set canvas props
+        canvas.width = width;
+        canvas.height = height;
+        // Draw an image of the video on the canvas
+        context.drawImage(video, 0, 0, width, height); // source, start coord, size
+
+        // Create image from the canvas
+        const imgUrl = canvas.toDataURL("image/png");
+        console.log(imgUrl);
+
+        // Create img element
+        const img = document.createElement('img');
+
+        // Set img src
+        img.setAttribute('src', imgUrl);
+        
+        // Add image to photos
+        photos.appendChild(img);
+    }
+}
