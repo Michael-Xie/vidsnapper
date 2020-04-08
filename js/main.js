@@ -37,11 +37,22 @@ video.addEventListener('canplay', function(e) {
     }
 }, false); // false for synchronous operation
 
+// Photo button event
 photoButton.addEventListener('click', function(e) {
     takePicture();
     e.preventDefault();
 }, false);
 
+// Filter event
+photoFilter.addEventListener('change', function(e){
+    // Set filter to chosen option
+    filter = e.target.value;
+    // Set filter to video
+    video.style.filter = filter;
+    console.log(filter);
+    e.preventDefault();
+})
+// Take picture from canvas
 function takePicture() {
     // Create canvas
     const context = canvas.getContext('2d');
@@ -54,7 +65,6 @@ function takePicture() {
 
         // Create image from the canvas
         const imgUrl = canvas.toDataURL("image/png");
-        console.log(imgUrl);
 
         // Create img element
         const img = document.createElement('img');
