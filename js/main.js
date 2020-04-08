@@ -52,6 +52,18 @@ photoFilter.addEventListener('change', function(e){
     console.log(filter);
     e.preventDefault();
 })
+
+// Clear event
+clearButton.addEventListener('click', function(){
+    // Clear photos
+    photos.innerHTML = '';
+    // Change filter back to normal
+    filter = 'none';
+    // Set video filter
+    video.style.filter = filter;
+    // Reset select list list
+    photoFilter.selectedIndex = 0;
+})
 // Take picture from canvas
 function takePicture() {
     // Create canvas
@@ -71,7 +83,7 @@ function takePicture() {
 
         // Set img src
         img.setAttribute('src', imgUrl);
-        
+        img.style.filter = filter;
         // Add image to photos
         photos.appendChild(img);
     }
